@@ -1,0 +1,38 @@
+[
+   {
+      "question": "First things first: if we don't get this navigational database up and running, we're going straight into the sun. Let's fix the query to get our current coordinates. Find the <span class='code'>time</span>, <span class='code'>azimuth</span>, <span class='code'>altitude</span>, and <span class='code'>zemith</span> columns for each row in the <span class='code'>position</span> table.",
+      "template": "SELECT time, ___ FROM ___;",
+      "id": 0,
+      "db_type": "sqlite"
+   },
+   {
+      "question": "Wow, that's a lot more positions than we wanted. We can't look through <i>everything</i> there to find our position. Try filtering it based on the time — find the position when time is equal to <span class='code'>\"19:03\"</span>.",
+      "template": "___ time, azimuth, altitude, zemith ___ position WHERE ___;",
+      "id": 1,
+      "db_type": "sqlite"
+   },
+   {
+      "question": "Nice! That should be our approximate position. Now see if you can get the <span class='code'>yaw</span>, <span class='code'>pitch</span>, <span class='code'>roll</span>, and <span class='code'>speed</span> from the <span class='code'>navigation</span> table where our azimuth, altitude, and zemith are equal to the results from above. That'll let us know how we should steer to get out of here.",
+      "template": "SELECT ___;",
+      "id": 2,
+      "db_type": "sqlite"
+   },
+   {
+      "question": "Looks like we have a few options. Let's see which one gives us the largest <span class='code'>chanceOfSurvival</span> — sort by that column, and limit it to one result.",
+      "template": "___ pitch, roll, yaw, speed ___ navigation ___ azimuth = ___ AND altitude = ___ AND zemith = ___ ORDER BY ___ LIMIT ___;",
+      "id": 3,
+      "db_type": "sqlite"
+   },
+   {
+      "question": "Okay, we should be able to navigate away safely. The passengers are complaining though — they want to know how long it'll take to get back home. There's a <span class='code'>timeEnroute</span> column for each segment of the journey in the <span class='code'>vectors</span> table. Can you get the sum of all of the times to get the total time elapsed?",
+      "template": "SELECT ___ FROM ___;",
+      "id": 4,
+      "db_type": "sqlite"
+   },
+   {
+      "question": "That doesn't look right — we're faster than light! It looks like this table has the time for ALL spacecraft. Try grouping the results by <span class='code'>spacecraft</span> to get a better answer for the passengers. Make sure its sorted by spacecraft.",
+      "template": "SELECT sum(time), spacecraft FROM ___ GROUP BY ___ ___ spacecraft",
+      "id": 5,
+      "db_type": "sqlite"
+   }
+]

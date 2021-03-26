@@ -23,7 +23,7 @@ const Login = (props) => {
 
    return (
       <div className='login'>
-         <img src='/tweety.png' /><br />
+         <img src='/tweety.png' alt='' /><br />
          <h2>S.S. Tweety System Dashboard</h2>
          <input onChange={onChangeName} name="name" value={props.name} placeholder="Name" type="text" /><br />
          <input onChange={onChangePassword} name="password" value={props.password} placeholder="Password" type="text" /><br />

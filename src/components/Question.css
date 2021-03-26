@@ -1,0 +1,56 @@
+.question {
+   width: 80%;
+   padding: 30px;
+   margin: 20px auto;
+
+   background: rgb(45, 47, 50);
+
+   font-size: 1.3em;
+   text-align: left;
+   line-height: 1.6em;
+}
+
+.question:not(:last-of-type) {
+   opacity: 0.5;
+}
+
+.question:not(:last-of-type):hover {
+   opacity: 1;
+}
+
+.question button {
+   font-size: inherit;
+   padding: 10px;
+   background: #000;
+   color: #fff;
+}
+
+.queryInput {
+   background: rgb(26, 29, 34);
+   padding: 10px;
+}
+
+.databaseType {
+   margin: -12px 0 3px 0;
+   font-size: 0.7em;
+   color: #aaa;
+}
+
+span.input {
+   display: inline-block;
+   min-width: 50px;
+   padding: 0 4px;
+   background: #000;
+   border: 1px #fff solid;
+}
+
+span.input:focus {
+   outline: none;
+}
+
+span.code {
+   color: rgb(213, 147, 73);
+   background: #000;
+   border-radius: 3px;
+   padding: 4px;
+}

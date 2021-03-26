@@ -31,11 +31,18 @@
       html {
         background: url('/background.png') #000;
         background-size: cover;
-        background-position: fixed;
+        background-attachment: fixed;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      html::-webkit-scrollbar {
+        display: none;
       }
 
       body {
         min-height: 100vh;
+        padding-bottom: 100vh;
         color: #fff;
         font-family: 'Inconsolata', monospace;
       }
