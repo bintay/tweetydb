@@ -5,7 +5,7 @@ import questions from '../content/questions.json';
 import './DatabaseDashboard.css';
 
 const DatabaseDashboard = (props) => {
-   const [ currentQuestion, setCurrentQuestion ] = useState(5);
+   const [ currentQuestion, setCurrentQuestion ] = useState(0);
    
    const setNextQuestion = (e) => {
       setCurrentQuestion(currentQuestion + 1);
@@ -32,6 +32,8 @@ const DatabaseDashboard = (props) => {
                   question={q.question} 
                   id={q.id} 
                   type={q.db_type} 
+                  name={props.name}
+                  password={props.password}
                   setNextQuestion={setNextQuestion}
                />
             )

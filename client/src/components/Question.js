@@ -45,7 +45,12 @@ class Question extends Component {
             headers: {
                'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify({ query: answer, type: this.props.type, id: this.props.id })
+            body: JSON.stringify({
+               query: answer, 
+               type: this.props.type, id: this.props.id,
+               name: this.props.name,
+               password: this.props.password
+            })
          }).then(res => res.json()).then((res) => {
             if (res.error) {
                this.setState({

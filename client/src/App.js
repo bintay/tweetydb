@@ -1,22 +1,16 @@
-import React, { useState } from 'react';
-import Login from './pages/Login';
-import DatabaseDashboard from './pages/DatabaseDashboard.js';
+import React from 'react';
+import Practice from './pages/Practice';
+import Admin from './pages/Admin';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import './App.css';
 
 const App = () => {
-  const [ name, setName ] = useState('');
-  const [ password, setPassword ] = useState('');
-  const [ loggedIn, setLoggedIn ] = useState(process.env.NODE_ENV !== 'production');
-
   return (
-    <div className="App">
-      {
-        loggedIn
-        ? <DatabaseDashboard password={password} name={name} />
-        : <Login  password={password} name={name} setPassword={setPassword} setName={setName} setLoggedIn={setLoggedIn} />
-      }
-    </div>
+    <Router>
+      <Route path="/" exact><Practice /></Route>
+      <Route path="/admin"><Admin /></Route>
+    </Router>
   );
 }
 
