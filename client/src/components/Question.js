@@ -3,7 +3,7 @@ import templateToHTML from '../util/templateToHTML';
 import Table from './Table';
 import './Question.css';
 
-const APIPrefix = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:4000'
+const APIPrefix = process.env.NODE_ENV === 'production' ? 'https://tweetydb-api.herokuapp.com' : 'http://localhost:4000'
 
 class Question extends Component {
    constructor (props) {
