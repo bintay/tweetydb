@@ -19,7 +19,7 @@
    },
    {
       "question": "Looks like we have a few options. Let's see which one gives us the largest <span class='code'>chance_of_survival</span> — sort by that column, and limit it to one result.",
-      "template": "___ pitch, roll, yaw, speed ___ navigation ___ azimuth = ___ AND altitude = ___ AND zenith = ___ ORDER BY ___ LIMIT ___;",
+      "template": "___ pitch, roll, yaw, speed ___ navigation ___ azimuth = -311 AND altitude = 2353 AND zenith = 729 ORDER BY ___ LIMIT ___;",
       "id": 3,
       "db_type": "sqlite"
    },
@@ -31,7 +31,7 @@
    },
    {
       "question": "That doesn't look right — we're faster than light! It looks like this table has the <span class='code'>time_elapsed</span> for ALL spacecraft. Try grouping the results by <span class='code'>spacecraft</span> to get a better answer for the passengers. Make sure its sorted by spacecraft.",
-      "template": "SELECT sum(time_elapsed), spacecraft FROM ___ GROUP BY ___ ___ spacecraft;",
+      "template": "SELECT sum(time_elapsed), spacecraft FROM ___ GROUP BY ___ ORDER BY spacecraft;",
       "id": 5,
       "db_type": "sqlite"
    }
