@@ -1,31 +1,44 @@
 const express = require('express');
-const app = express();
+const bodyParser = require('body-parser');
+const { connectSQLite, processSQLite } = require('./sqliteProcessor');
 
-const processQuery = (type, query) => {
+const app = express();
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+let sqliteConnection;
+connectSQLite(0, (db) => {
+   sqliteConnection = db;
+});
+
+const processQuery = (type, query, callback) => {
    switch (type) {
       case "sqlite":
-         return processSQLite(query);
+         return processSQLite(sqliteConnection, query, callback);
       case "mongodb":
-         return processMongoDB(query);
+         return processMongoDB(query, callback);
       case "neo4j":
-         return processNeo4j(query);
+         return processNeo4j(query, callback);
    }
 }
 
-app.post('/submit', (req, res) => {
-   const { type, query, id } = req.body;
-   const { result, error } = processQuery(type, query);
-   const answer = getAnswer(id);
-   const correct = answer === result;
+const getAnswer = () => 'wrong';
 
-   if (error) {
-      res.status(400);
-      res.json({ error });
-      return;
-   } else {
-      res.status(200);
-      res.json({ result, correct });
-   }
+app.post('/submit', (req, res) => {
+   console.log(req.body);
+   const { type, query, id } = req.body;
+   processQuery(type, query, ({error, result}) => {
+      const answer = getAnswer(id);
+      const correct = answer === result;
+
+      if (error) {
+         res.status(400);
+         res.json({ error });
+      } else {
+         res.status(200);
+         res.json({ result, correct });
+      }
+   });
 });
 
-app.listen(3000);
+app.listen(4000);
