@@ -2,10 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { connectSQLite, processSQLite } = require('./sqliteProcessor');
 const correctAnswers = require('./correctAnswers');
+const cors = require('cors');
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
 
 let sqliteConnection;
 connectSQLite(0, (db) => {
@@ -26,14 +28,14 @@ const processQuery = (type, query, callback) => {
 const getAnswer = (id) => correctAnswers[id];
 
 app.post('/submit', (req, res) => {
-   console.log(req.body);
+   console.log('Got request: ', req.body);
    const { type, query, id } = req.body;
    processQuery(type, query, ({error, result}) => {
       const answer = getAnswer(id);
       const correct = answer === result;
 
       if (error) {
-         res.status(400);
+         res.status(200);
          res.json({ error });
       } else {
          res.status(200);
