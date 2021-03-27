@@ -28,11 +28,18 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.animateBounce {
+  animation: animateBounce 4s ease-in-out infinite;
+}
+
+@keyframes animateBounce {
+  0% {
+    transform: translate(0, 0) rotate(-2deg);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    transform: translate(0, 100px) rotate(5deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(-2deg);
   }
 }

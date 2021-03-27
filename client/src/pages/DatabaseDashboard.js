@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Question from '../components/Question';
+import Success from '../components/Success';
 import questions from '../content/questions.json';
 import './DatabaseDashboard.css';
 
 const DatabaseDashboard = (props) => {
-   const [ currentQuestion, setCurrentQuestion ] = useState(0);
+   const [ currentQuestion, setCurrentQuestion ] = useState(5);
    
    const setNextQuestion = (e) => {
       setCurrentQuestion(currentQuestion + 1);
@@ -34,6 +35,11 @@ const DatabaseDashboard = (props) => {
                   setNextQuestion={setNextQuestion}
                />
             )
+         }
+         {
+            currentQuestion >= questions.length
+            ? <Success />
+            : null
          }
       </div>
    )
