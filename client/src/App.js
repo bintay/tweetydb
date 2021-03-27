@@ -7,7 +7,7 @@ import './App.css';
 const App = () => {
   const [ name, setName ] = useState('');
   const [ password, setPassword ] = useState('');
-  const [ loggedIn, setLoggedIn ] = useState(true);
+  const [ loggedIn, setLoggedIn ] = useState(false);
 
   return (
     <div className="App">
