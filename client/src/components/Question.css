@@ -24,6 +24,7 @@
    background: #000;
    color: #fff;
    margin-right: 20px;
+   border: 1px rgba(0,0,0,0) solid;
 }
 
 .question button.yellow {
@@ -34,6 +35,10 @@
 .question button.red {
    background: rgb(72, 7, 4);
    color: #fff;
+}
+
+.question button:focus {
+   border: 1px solid #fff;
 }
 
 .queryInput {

@@ -21,8 +21,14 @@ const Login = (props) => {
       }
    }
 
+   const onKeyDown = (e) => {
+      if (e.key === "Enter") {
+         onLogin();
+      }
+   }
+
    return (
-      <div className='login'>
+      <div className='login' onKeyDown={onKeyDown}>
          <img src='/tweety.png' alt='' /><br />
          <h2>S.S. Tweety System Dashboard</h2>
          <input onChange={onChangeName} name="name" value={props.name} placeholder="Name" type="text" /><br />
