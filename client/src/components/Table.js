@@ -13,8 +13,8 @@ const Table = (props) => {
                <tr>
                   {columns.map(column => (<th key={column}>{column}</th>))}
                </tr>
-               {props.rows.map(row => (
-                  <tr>
+               {props.rows.map((row, index) => (
+                  <tr key={index}>
                      {columns.map(column => (<td key={column}>{row[column]}</td>))}
                   </tr>
                ))}

@@ -20,6 +20,21 @@ class Question extends Component {
       };
    }
 
+   componentDidMount () {
+      const editable = document.getElementsByClassName('input');
+      console.log(editable);
+      for (const element of editable) {
+         element.removeEventListener("paste", this.pasteRawText);
+         element.addEventListener("paste", this.pasteRawText);
+      }
+   }
+
+   pasteRawText (e) {
+      e.preventDefault();
+      const text = e.clipboardData.getData('text/plain');
+      document.execCommand('insertHTML', false, text);
+   }
+
    onSubmit = (e) => {
       const answer = document.getElementById(`question-${this.props.id}-answer`).innerText;
       this.setState({
