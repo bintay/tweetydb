@@ -14,7 +14,9 @@ class Question extends Component {
          error: '',
          result: [],
          loading: false,
-         showResults: false
+         showResults: false,
+         showNext: false,
+         numberIncorrect: 0
       };
    }
 
@@ -35,32 +37,37 @@ class Question extends Component {
                   error: `There was an error with your query! Check table and column names, and please reach out to a moderator if you're stuck!`,
                   result: [],
                   loading: false,
-                  showResults: true
+                  showResults: true,
+                  numberIncorrect: this.state.numberIncorrect + 1
                });
             } else if (!res.correct) {
                this.setState({
                   error: `Your query ran, but the results weren't quite correct. Double check your logic, and please reach out to a moderator if you're stuck!`,
                   result: JSON.parse(res.result),
                   loading: false,
-                  showResults: true
+                  showResults: true,
+                  numberIncorrect: this.state.numberIncorrect + 1
                });
             } else {
                this.setState({
                   error: '',
                   result: JSON.parse(res.result),
                   loading: false,
-                  showResults: true
+                  showResults: true,
+                  showNext: true
                });
-
-               if (!this.state.isOnNextQuestion) {
-                  this.props.setNextQuestion(e);
-                  this.setState({
-                     isOnNextQuestion: true,
-                  });
-               }
             }
          });
       });
+   }
+
+   nextQuestion = (e) => {
+      if (!this.state.isOnNextQuestion) {
+         this.props.setNextQuestion(e);
+         this.setState({
+            isOnNextQuestion: true,
+         });
+      }
    }
 
    render = () => (
@@ -84,7 +91,16 @@ class Question extends Component {
             ? <p>loading...</p>
             : <br />
          }
-         <button onClick={this.onSubmit}>Submit</button>
+         {
+            this.state.showNext
+            ? <button onClick={this.nextQuestion} className='yellow'>Next</button>
+            : <button onClick={this.onSubmit}>Submit</button>
+         }
+         {
+            this.state.numberIncorrect > 3 && !this.state.showNext
+            ? <button onClick={this.nextQuestion} className='red'>Skip</button>
+            : null
+         }
       </div>
    )
 }

@@ -23,6 +23,17 @@
    padding: 10px;
    background: #000;
    color: #fff;
+   margin-right: 20px;
+}
+
+.question button.yellow {
+   background: rgb(255, 229, 154);
+   color: #111;
+}
+
+.question button.red {
+   background: rgb(72, 7, 4);
+   color: #fff;
 }
 
 .queryInput {

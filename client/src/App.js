@@ -7,7 +7,7 @@ import './App.css';
 const App = () => {
   const [ name, setName ] = useState('');
   const [ password, setPassword ] = useState('');
-  const [ loggedIn, setLoggedIn ] = useState(false);
+  const [ loggedIn, setLoggedIn ] = useState(process.env.NODE_ENV !== 'production');
 
   return (
     <div className="App">
