@@ -33,6 +33,7 @@ const Admin = () => {
          console.log('old_logs', logs);
          setLogs(logs => logs.concat([data]));
       });
+   // eslint-disable-next-line react-hooks/exhaustive-deps
    }, []);
 
    return (
