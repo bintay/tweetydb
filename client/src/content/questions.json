@@ -30,7 +30,7 @@
       "db_type": "sqlite"
    },
    {
-      "question": "That doesn't look right — we're faster than light! It looks like the <span class='code'>vector</span> table has the <span class='code'>time_elapsed</span> for ALL spacecraft. Try grouping the results by <span class='code'>spacecraft</span> to get a better answer for the passengers. Make sure its sorted by spacecraft.",
+      "question": "That doesn't look right — we're faster than light! It looks like the <span class='code'>vectors</span> table has the <span class='code'>time_elapsed</span> for ALL spacecraft. Try grouping the results by <span class='code'>spacecraft</span> to get a better answer for the passengers. Make sure its sorted by spacecraft.",
       "template": "SELECT sum(time_elapsed), spacecraft FROM ___ GROUP BY ___ ORDER BY spacecraft;",
       "id": 5,
       "db_type": "sqlite"
