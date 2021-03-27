@@ -12,7 +12,7 @@
       "db_type": "sqlite"
    },
    {
-      "question": "Nice! That should be our approximate position. Now see if you can get the <span class='code'>yaw</span>, <span class='code'>pitch</span>, <span class='code'>roll</span>, and <span class='code'>speed</span> from the <span class='code'>navigation</span> table where our azimuth, altitude, and zenith are equal to the results from above. That'll let us know how we should steer to get out of here.",
+      "question": "Nice! That should be our approximate position. Now see if you can get the <span class='code'>yaw</span>, <span class='code'>pitch</span>, <span class='code'>roll</span>, and <span class='code'>speed</span> from the <span class='code'>navigation</span> table where our azimuth, altitude, and zenith are equal to the results from above (azimuth = -311, altitude = 2353, and zenith = 729). That'll let us know how we should steer to get out of here.",
       "template": "SELECT ___;",
       "id": 2,
       "db_type": "sqlite"
@@ -30,7 +30,7 @@
       "db_type": "sqlite"
    },
    {
-      "question": "That doesn't look right — we're faster than light! It looks like this table has the <span class='code'>time_elapsed</span> for ALL spacecraft. Try grouping the results by <span class='code'>spacecraft</span> to get a better answer for the passengers. Make sure its sorted by spacecraft.",
+      "question": "That doesn't look right — we're faster than light! It looks like the <span class='code'>vector</span> table has the <span class='code'>time_elapsed</span> for ALL spacecraft. Try grouping the results by <span class='code'>spacecraft</span> to get a better answer for the passengers. Make sure its sorted by spacecraft.",
       "template": "SELECT sum(time_elapsed), spacecraft FROM ___ GROUP BY ___ ORDER BY spacecraft;",
       "id": 5,
       "db_type": "sqlite"
