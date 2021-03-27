@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { connectSQLite, processSQLite } = require('./sqliteProcessor');
+const correctAnswers = require('./correctAnswers');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -22,7 +23,7 @@ const processQuery = (type, query, callback) => {
    }
 }
 
-const getAnswer = () => 'wrong';
+const getAnswer = (id) => correctAnswers[id];
 
 app.post('/submit', (req, res) => {
    console.log(req.body);

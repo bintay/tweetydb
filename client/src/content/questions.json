@@ -24,14 +24,14 @@
       "db_type": "sqlite"
    },
    {
-      "question": "Okay, we should be able to navigate away safely. The passengers are complaining though — they want to know how long it'll take to get back home. There's a <span class='code'>elapsed_time</span> column for each segment of the journey in the <span class='code'>vectors</span> table. Can you get the sum of all of the times to get the total time elapsed?",
+      "question": "Okay, we should be able to navigate away safely. The passengers are complaining though — they want to know how long it'll take to get back home. There's a <span class='code'>time_elapsed</span> column for each segment of the journey in the <span class='code'>vectors</span> table. Can you get the sum of all of the times to get the total time elapsed?",
       "template": "SELECT ___ FROM ___;",
       "id": 4,
       "db_type": "sqlite"
    },
    {
-      "question": "That doesn't look right — we're faster than light! It looks like this table has the <span class='code'>elapsed_time</span> for ALL spacecraft. Try grouping the results by <span class='code'>spacecraft</span> to get a better answer for the passengers. Make sure its sorted by spacecraft.",
-      "template": "SELECT sum(elapsed_time), spacecraft FROM ___ GROUP BY ___ ___ spacecraft",
+      "question": "That doesn't look right — we're faster than light! It looks like this table has the <span class='code'>time_elapsed</span> for ALL spacecraft. Try grouping the results by <span class='code'>spacecraft</span> to get a better answer for the passengers. Make sure its sorted by spacecraft.",
+      "template": "SELECT sum(time_elapsed), spacecraft FROM ___ GROUP BY ___ ___ spacecraft;",
       "id": 5,
       "db_type": "sqlite"
    }
