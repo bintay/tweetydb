@@ -14,7 +14,8 @@ const Login = (props) => {
    }
 
    const onLogin = (e) => {
-      if (sha256(props.password) === '963bc8dd7a0e621416f1a1f846d5a7731e3771f7af52712080a33f984db5e617') {
+      if (sha256(props.password) === '963bc8dd7a0e621416f1a1f846d5a7731e3771f7af52712080a33f984db5e617'
+         || sha256(props.password) === 'a8c2299252a5b982235b1806dc09b477dd2681e94dfa3760326d73aa25d56b84') {
          props.setLoggedIn(true);
       } else {
          setError('Check your password — tweety didn\'t like that one');

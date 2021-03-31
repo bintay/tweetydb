@@ -20,17 +20,13 @@ const Admin = () => {
    }
 
    useEffect(() => {
-      console.log('mounted');
       const io = socketIOClient(APIPrefix);
 
       io.on('full_logs', (data) => {
-         console.log('full_logs', data)
          setLogs(data);
       });
 
       io.on('new_log', (data) => {
-         console.log('new_log', data);
-         console.log('old_logs', logs);
          setLogs(logs => logs.concat([data]));
       });
    // eslint-disable-next-line react-hooks/exhaustive-deps

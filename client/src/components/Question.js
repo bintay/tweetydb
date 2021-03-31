@@ -22,7 +22,6 @@ class Question extends Component {
 
    componentDidMount () {
       const editable = document.getElementsByClassName('input');
-      console.log(editable);
       for (const element of editable) {
          element.removeEventListener("paste", this.pasteRawText);
          element.addEventListener("paste", this.pasteRawText);

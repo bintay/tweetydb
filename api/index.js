@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { connectSQLite, processSQLite } = require('./sqliteProcessor');
+const { connectMongoDB, processMongoDB } = require('./mongoDBProcessor');
 const correctAnswers = require('./correctAnswers');
 const cors = require('cors');
 const sha256 = require('js-sha256');
@@ -31,13 +32,15 @@ connectSQLite(0, (db) => {
 });
 
 const processQuery = (type, query, callback) => {
-   switch (type) {
+   switch (type.toLowerCase()) {
       case "sqlite":
          return processSQLite(sqliteConnection, query, callback);
       case "mongodb":
          return processMongoDB(query, callback);
       case "neo4j":
          return processNeo4j(query, callback);
+      case "text":
+         return callback({ result: JSON.stringify(["Thanks!"]) });
    }
 }
 
@@ -53,7 +56,8 @@ app.post('/submit', (req, res) => {
    const { type, query, id, name, password } = req.body;
    const logRecord = { type, query, id, name, password, time: new Date(), logId: ++logNumber, result: 'no results', error: 'no error', correct: false };
 
-   if (sha256(password) !== '963bc8dd7a0e621416f1a1f846d5a7731e3771f7af52712080a33f984db5e617') {
+   if (sha256(password) !== '963bc8dd7a0e621416f1a1f846d5a7731e3771f7af52712080a33f984db5e617'
+       && sha256(password) !== 'a8c2299252a5b982235b1806dc09b477dd2681e94dfa3760326d73aa25d56b84') {
       res.status(200);
       res.json({ error: 'Incorrect password' });
       addLog(logRecord);
@@ -62,8 +66,8 @@ app.post('/submit', (req, res) => {
 
    processQuery(type, query, ({error, result}) => {
       const answer = getAnswer(id);
-      const correct = answer === result;
-
+      const correct = answer && result && answer.toLowerCase() === result.toLowerCase();
+      
       logRecord['result'] = result || 'no results';
       logRecord['error'] = error || 'no error';
       logRecord['correct'] = correct || false;

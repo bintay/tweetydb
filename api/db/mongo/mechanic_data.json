@@ -1,0 +1,32 @@
+[
+   {
+      "name": "Muhammad Khatri",
+      "ship": "Tweety",
+      "experience": 3
+   },
+   {
+      "name": "Brayden Cloud",
+      "ship": "Tweety",
+      "experience": 3
+   },
+   {
+      "name": "Gabe Castro",
+      "ship": "Tweety",
+      "experience": 3
+   },
+   {
+      "name": "Jon Choi",
+      "ship": "Bluebird",
+      "experience": 2
+   },
+   {
+      "name": "Sophie Liu",
+      "ship": "Bluebird",
+      "experience": 2
+   },
+   {
+      "name": "Krithika Ravishankar",
+      "ship": "Bluebird",
+      "experience": 1
+   }
+]

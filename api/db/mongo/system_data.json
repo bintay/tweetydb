@@ -1,0 +1,80 @@
+[
+   {
+      "name": "FTL Power Plant",
+      "status": "Operational",
+      "time_in_service": 4513622400,
+      "mechanic": "Muhammad Khatri"
+   },
+   {
+      "name": "FTL Turbo",
+      "status": "Operational",
+      "time_in_service": 2532510200,
+      "mechanic": "Muhammad Khatri"
+   },
+   {
+      "name": "Air Conditioning",
+      "status": "Maintenance Required",
+      "time_in_service": 6294200000,
+      "mechanic": "Brayden Cloud"
+   },
+   {
+      "name": "Pitot Static System",
+      "status": "Operational",
+      "time_in_service": 1992310010,
+      "mechanic": "Brayden Cloud"
+   },
+   {
+      "name": "Fuel System",
+      "status": "Maintenance Required",
+      "time_in_service": 4332320020,
+      "mechanic": "Muhammad Khatri"
+   },
+   {
+      "name": "Main Control Surfaces",
+      "status": "Maintenance Required",
+      "time_in_service": 1332320020,
+      "mechanic": "Gabe Castro"
+   },
+   {
+      "name": "Secondary Control Surfaces",
+      "status": "Operational",
+      "time_in_service": 1332320020,
+      "mechanic": "Gabe Castro"
+   },
+   {
+      "name": "LiDar Transponder",
+      "status": "Inactive",
+      "time_in_service": 3210580000,
+      "mechanic": "Jon Choi"
+   },
+   {
+      "name": "Infrared Headlights",
+      "status": "Operational",
+      "time_in_service": 3210580000,
+      "mechanic": "Sophie Liu"
+   },
+   {
+      "name": "Ultraviolet Tailbeams",
+      "status": "Operational",
+      "time_in_service": 3210580000,
+      "mechanic": "Sophie Liu"
+   },
+   {
+      "name": "Navigation Lights",
+      "status": "Operational",
+      "time_in_service": 3210580000,
+      "mechanic": "Sophie Liu"
+   },
+   {
+      "name": "Hamster Wheel Auxiliary Power",
+      "status": "Operational",
+      "time_in_service": 8375790000,
+      "mechanic": "Krithika Ravishankar"
+   },
+   {
+      "name": "Electrical System",
+      "status": "Operational",
+      "time_in_service": 3210580000,
+      "mechanic": "Krithika Ravishankar"
+   }
+]

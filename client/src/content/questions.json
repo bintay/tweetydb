@@ -34,5 +34,41 @@
       "template": "SELECT sum(time_elapsed), spacecraft FROM ___ GROUP BY ___ ORDER BY spacecraft;",
       "id": 5,
       "db_type": "sqlite"
+   },
+   {
+      "question": "Awesome! The SQLite system appears operational. We still have some work to do in the MongoDB and Neo4j systems, but you'll get a briefing before you need to start working through those exercises. Wait here until the next section!<br/><br/>If you have any feedback so far, please put it in the box below!",
+      "template": "___",
+      "id": 6,
+      "db_type": "text"
+   },
+   {
+      "question": "Let's start by getting all of the systems onboard. Look in the <span class='code'>systems</span> collection, and don't filter by anything.",
+      "template": "db.___.find(___).exec();",
+      "id": 7,
+      "db_type": "MongoDB"
+   },
+   {
+      "question": "Instead of manually looking through all of those (since we're lazy programmers), lets find all the systems that currently have a <span class='code'>status</span> of <span class='code'>\"Maintenance Required\"</span>. Remember, we're looking at the <span class='code'>systems</span> collection.",
+      "template": "db.___.find(___).exec();",
+      "id": 8,
+      "db_type": "MongoDB"
+   },
+   {
+      "question": "Okay, looks like minor things (who needs main control surfaces anyway?). Let's double check and make sure we didn't miss anything — find the systems where <span class='code'>status</span> is NOT <span class='code'>\"Operational\"</span>. Hint: <span class='hint'>Remember <span class='code'>$ne</span>?</span>",
+      "template": "db.___.find(___).exec();",
+      "id": 9,
+      "db_type": "MongoDB"
+   },
+   {
+      "question": "Oh no, the LiDar is down! See if you can find which ship the mechanic (Jon Choi) is on. You can find the document in the <span class='code'>mechanics</span> collection filtering by the <span class='code'>name</span> field.",
+      "template": "db.___;",
+      "id": 10,
+      "db_type": "MongoDB"
+   },
+   {
+      "question": "Great! We'll send a message to the SS Bluebird. Now let's see what else could use some preventative maintenance — look in the <span class='code'>systems</span> collection for any systems that either have a <span class='code'>status</span> that ISN'T <span class='code'>\"Operational\"</span> OR have been in service for more than <span class='code'>4000000000</span>ms (look at the <span class='code'>time_in_service</span> field). Hint: <span class='hint'>the syntax for OR is <span class='code'>{ $or: [ ...comma separated conditions... ] }</span></span>",
+      "template": "db.systems.___.exec();",
+      "id": 11,
+      "db_type": "MongoDB"
    }
 ]

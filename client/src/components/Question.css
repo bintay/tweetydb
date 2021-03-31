@@ -70,3 +70,24 @@ span.code {
    border-radius: 3px;
    padding: 4px;
 }
+
+span.hint span.code {
+   color: #000;
+}
+
+span.hint:hover span.code {
+   color: rgb(213, 147, 73);
+}
+
+span.hint {
+   background: #000;
+   color: #000;
+   border-radius: 3px;
+   padding: 4px;
+   cursor: default;
+}
+
+span.hint:hover {
+   background: #222;
+   color: inherit;
+}
