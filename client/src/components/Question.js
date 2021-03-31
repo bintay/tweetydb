@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import templateToHTML from '../util/templateToHTML';
 import Table from './Table';
 import './Question.css';
+import Confetti from 'react-confetti';
 
 const APIPrefix = process.env.NODE_ENV === 'production' ? 'https://tweetydb-api.herokuapp.com' : 'http://localhost:4000'
 
@@ -16,7 +17,8 @@ class Question extends Component {
          loading: false,
          showResults: false,
          showNext: false,
-         numberIncorrect: 0
+         numberIncorrect: 0,
+         showConfetti: false
       };
    }
 
@@ -73,7 +75,12 @@ class Question extends Component {
                   result: JSON.parse(res.result),
                   loading: false,
                   showResults: true,
-                  showNext: true
+                  showNext: true,
+                  showConfetti: true
+               }, () => {
+                  setTimeout(() => {
+                     this.setState({ showConfetti: false });
+                  }, 10000)
                });
             }
          });
@@ -118,6 +125,17 @@ class Question extends Component {
          {
             this.state.numberIncorrect > 3 && !this.state.showNext
             ? <button onClick={this.nextQuestion} className='red'>Skip</button>
+            : null
+         }
+         {
+            this.state.showConfetti
+            ? <Confetti
+               width={window.innerWidth}
+               height={window.innerHeight}
+               colors={['rgb(255,255,77)']}
+               style={{ position: 'fixed' }}
+               recycle={false}
+            />
             : null
          }
       </div>
