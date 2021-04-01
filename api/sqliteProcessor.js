@@ -10,7 +10,7 @@ const connectSQLite = (number, callback) => {
    });
 }
 
-const bannedWords = ['insert', 'upsert', 'update', 'delete', 'drop', 'create', 'attach'];
+const bannedWords = ['insert', 'upsert', 'update', 'delete', 'drop', 'create', 'attach', 'with'];
 const validateSQLite = (query) => {
    // READONLY should prevent any of this, but just to be sure
    const hasBannedWord = bannedWords.some((value) => query.toLowerCase().indexOf(value) !== -1);
