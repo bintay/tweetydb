@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Question from '../components/Question';
 import Success from '../components/Success';
 import questions from '../content/questions.json';
-import sha256 from 'js-sha256';
 import './DatabaseDashboard.css';
 
 const DatabaseDashboard = (props) => {
