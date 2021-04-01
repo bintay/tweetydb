@@ -4,7 +4,7 @@ import Table from './Table';
 import './Question.css';
 import Confetti from 'react-confetti';
 
-const APIPrefix = process.env.NODE_ENV === 'production' ? 'https://tweetydb-api.herokuapp.com' : 'http://localhost:4000'
+const APIPrefix = process.env.NODE_ENV === 'production' ? 'https://tweetydb.com/api' : 'http://localhost:4000'
 
 class Question extends Component {
    constructor (props) {

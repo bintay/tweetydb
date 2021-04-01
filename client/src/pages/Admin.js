@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import socketIOClient from "socket.io-client";
 import Table from '../components/Table';
 
-const APIPrefix = process.env.NODE_ENV === 'production' ? 'https://tweetydb-api.herokuapp.com' : 'http://localhost:4000'
+const APIPrefix = process.env.NODE_ENV === 'production' ? 'https://tweetydb.com/api' : 'http://localhost:4000'
 
 const Admin = () => {
    const [ logs, setLogs ] = useState([]);

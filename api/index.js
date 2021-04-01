@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { connectSQLite, processSQLite } = require('./sqliteProcessor');
-const { connectMongoDB, processMongoDB } = require('./mongoDBProcessor');
+const { processMongoDB } = require('./mongoDBProcessor');
 const correctAnswers = require('./correctAnswers');
 const cors = require('cors');
 const sha256 = require('js-sha256');
@@ -21,7 +21,12 @@ const io = socketio(server, {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+   "origin": "*",
+   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+   "preflightContinue": false,
+   "optionsSuccessStatus": 204
+}));
 
 const logs = [];
 let logNumber = 0;
