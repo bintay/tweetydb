@@ -7,8 +7,10 @@ import './DatabaseDashboard.css';
 
 const DatabaseDashboard = (props) => {
    const [ currentQuestion, setCurrentQuestion ] = useState(
-      sha256(props.password) === 'a8c2299252a5b982235b1806dc09b477dd2681e94dfa3760326d73aa25d56b84'
+      props.password.substring(props.password.length - 7) === 'SkipSQL'
       ? 6
+      : props.password.substring(props.password.length - 9) === 'SkipMongo'
+      ? 12
       : 0
    );
    

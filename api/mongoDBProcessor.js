@@ -13,7 +13,6 @@ try {
 
 const uri = `mongodb+srv://${secret.mongo_readonly_user}:${secret.mongo_readonly_password}@${secret.mongo_url}/practice?retryWrites=true&w=majority`;
 const dbname = `tweety`;
-console.log(uri);
 
 const bannedWords = ['insert', 'upsert', 'update', 'delete', 'drop', 'create', 'attach', 'clean', 'hydrate', 'watch', 'populate', 'overwrite', 'parent', 'invalidate', 'depopulate'];
 const validateMongoDB = (query) => {

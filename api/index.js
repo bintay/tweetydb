@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { connectSQLite, processSQLite } = require('./sqliteProcessor');
 const { processMongoDB } = require('./mongoDBProcessor');
+const { connectNeo4j, processNeo4j } = require('./neo4jProcessor');
 const correctAnswers = require('./correctAnswers');
 const cors = require('cors');
 const sha256 = require('js-sha256');
@@ -36,6 +37,8 @@ connectSQLite(0, (db) => {
    sqliteConnection = db;
 });
 
+const {neo4jDriver, neo4jSession} = connectNeo4j();
+
 const processQuery = (type, query, callback) => {
    switch (type.toLowerCase()) {
       case "sqlite":
@@ -43,7 +46,7 @@ const processQuery = (type, query, callback) => {
       case "mongodb":
          return processMongoDB(query, callback);
       case "neo4j":
-         return processNeo4j(query, callback);
+         return processNeo4j(neo4jSession, query, callback);
       case "text":
          return callback({ result: JSON.stringify(["Thanks!"]) });
    }
@@ -72,7 +75,8 @@ app.post('/submit', (req, res) => {
    }
 
    if (sha !== '963bc8dd7a0e621416f1a1f846d5a7731e3771f7af52712080a33f984db5e617'
-       && sha !== 'a8c2299252a5b982235b1806dc09b477dd2681e94dfa3760326d73aa25d56b84') {
+       && sha !== 'a8c2299252a5b982235b1806dc09b477dd2681e94dfa3760326d73aa25d56b84'
+       && sha !== '295315cc677f6e2e1a28afaa1451302a3824bb4452bbcac9d174c641517731ef') {
       res.status(200);
       res.json({ error: 'Incorrect password' });
       addLog(logRecord);
@@ -103,5 +107,5 @@ io.on('connection', function(client) {
    client.emit('full_logs', logs);
 });
 
-console.log('starting to listen');
+console.log(`starting to listen on port ${process.env.PORT || 4000}`);
 server.listen(process.env.PORT || 4000);
