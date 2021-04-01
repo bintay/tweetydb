@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { connectSQLite, processSQLite } = require('./sqliteProcessor');
-const { connectMongoDB, processMongoDB } = require('./mongoDBProcessor');
+const { processMongoDB } = require('./mongoDBProcessor');
 const correctAnswers = require('./correctAnswers');
 const cors = require('cors');
 const sha256 = require('js-sha256');
@@ -21,7 +21,12 @@ const io = socketio(server, {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+   "origin": "*",
+   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+   "preflightContinue": false,
+   "optionsSuccessStatus": 204
+}));
 
 const logs = [];
 let logNumber = 0;
@@ -56,8 +61,18 @@ app.post('/submit', (req, res) => {
    const { type, query, id, name, password } = req.body;
    const logRecord = { type, query, id, name, password, time: new Date(), logId: ++logNumber, result: 'no results', error: 'no error', correct: false };
 
-   if (sha256(password) !== '963bc8dd7a0e621416f1a1f846d5a7731e3771f7af52712080a33f984db5e617'
-       && sha256(password) !== 'a8c2299252a5b982235b1806dc09b477dd2681e94dfa3760326d73aa25d56b84') {
+   let sha;
+   try {
+      sha = sha256(password);
+   } catch (e) {
+      res.status(200);
+      res.json({ error: 'Incorrect password' });
+      addLog(logRecord);
+      return;
+   }
+
+   if (sha !== '963bc8dd7a0e621416f1a1f846d5a7731e3771f7af52712080a33f984db5e617'
+       && sha !== 'a8c2299252a5b982235b1806dc09b477dd2681e94dfa3760326d73aa25d56b84') {
       res.status(200);
       res.json({ error: 'Incorrect password' });
       addLog(logRecord);
@@ -88,4 +103,5 @@ io.on('connection', function(client) {
    client.emit('full_logs', logs);
 });
 
+console.log('starting to listen');
 server.listen(process.env.PORT || 4000);
