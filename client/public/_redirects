@@ -1,2 +1,4 @@
+/feedback https://docs.google.com/forms/d/e/1FAIpQLSevBT44lJ8ijEHZXLYzKvO1OCqJurxScnp_pF0NEB8-r1wyug/viewform?usp=sf_link 301
+/slides https://docs.google.com/presentation/d/1BPelR_2577N5HI4iyiMs2HVIPWZiL0JsE9V-2UAHLIY/edit?usp=sharing 301
 /api/*  https://tweetydb-api.herokuapp.com/:splat  200
 /*                /index.html  200
