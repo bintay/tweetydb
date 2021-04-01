@@ -13,6 +13,7 @@ try {
 
 const uri = `mongodb+srv://${secret.mongo_readonly_user}:${secret.mongo_readonly_password}@${secret.mongo_url}/practice?retryWrites=true&w=majority`;
 const dbname = `tweety`;
+console.log(uri);
 
 const bannedWords = ['insert', 'upsert', 'update', 'delete', 'drop', 'create', 'attach', 'clean', 'hydrate', 'watch', 'populate', 'overwrite', 'parent', 'invalidate', 'depopulate'];
 const validateMongoDB = (query) => {
@@ -70,7 +71,8 @@ const processMongoDB = (query, callback) => {
    }
 
    console.log('mongo param: ', parameter);
-
+   console.log(uri);
+   
    MongoClient.connect(uri, { useUnifiedTopology: true }, (err, client) => {
       const db = client.db(dbname);
 
