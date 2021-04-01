@@ -72,8 +72,14 @@ const processMongoDB = (query, callback) => {
 
    console.log('mongo param: ', parameter);
    console.log(uri);
-   
+
    MongoClient.connect(uri, { useUnifiedTopology: true }, (err, client) => {
+      if (err) {
+         console.log(err);
+         callback({ error: "Mongo Error: " + JSON.stringify(err) });
+         return;
+      }
+
       const db = client.db(dbname);
 
       db.collection(collection).find(parameter).toArray((err, res) => {
