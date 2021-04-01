@@ -1,5 +1,15 @@
 const MongoClient = require('mongodb').MongoClient;
-const secret = require('./db/mongo/secret');
+
+let secret;
+try {
+   secret = require('./db/mongo/secret');
+} catch (e) {
+   secret = {
+      "mongo_url": process.env.MONGO_URL,
+      "mongo_readonly_user": process.env.MONGO_READONLY_USER,
+      "mongo_readonly_password": process.env.MONGO_READONLY_PASSWORD
+   }   
+}
 
 const uri = `mongodb+srv://${secret.mongo_readonly_user}:${secret.mongo_readonly_password}@${secret.mongo_url}/practice?retryWrites=true&w=majority`;
 const dbname = `tweety`;
