@@ -82,7 +82,7 @@ const processMongoDB = (query, callback) => {
 
       const db = client.db(dbname);
 
-      db.collection(collection).find(parameter).toArray((err, res) => {
+      db.collection(collection).find(parameter).sort({ name: 1 } ).toArray((err, res) => {
          if (err) {
             callback({ error: JSON.stringify(err) + ' // ' + err.toString() });
          } else {
