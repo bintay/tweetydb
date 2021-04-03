@@ -23,6 +23,48 @@ const Admin = () => {
       return newLog;
    }
 
+   const leadingZeros = (num, length) => {
+      num = num.toString();
+      return (new Array(length - num.length)).fill(0).join('') + num;
+   }
+
+   const filterLogs = (log) => {
+      return ((nameFilter.length === 0 || log.name.toLowerCase() === nameFilter.toLowerCase())
+            && (questionFilter.length === 0 || log.id.toString() === questionFilter)
+            && (!onlyShowIncorrect || !log.correct))
+   }
+
+   const getUserProgress = () => {
+      const usersToLastSubmission =  {};
+      for (const log of logs) {
+         const lastSubmission = usersToLastSubmission[log.name];
+         if ((!lastSubmission || new Date(log.time) > new Date(lastSubmission.time)) && log.correct) {
+            usersToLastSubmission[log.name] = { 
+               question: log.id, 
+               time: new Date(log.time)
+            }
+         }
+
+         if (!lastSubmission && !log.correct) {
+            usersToLastSubmission[log.name] = { 
+               question: -1,
+               time: new Date(log.time)
+            }
+         }
+      }
+
+      const tabularUserToSubmission = [];
+      for (const name in usersToLastSubmission) {
+         tabularUserToSubmission.push({ name, ...usersToLastSubmission[name] })
+      }
+      return tabularUserToSubmission
+             .sort((a, b) => new Date(b.time) - new Date(a.time))
+             .map(log => ({
+                ...log, 
+                time: leadingZeros(log.time.getHours(), 2) + ':' + leadingZeros(log.time.getMinutes(), 2) + ':' + leadingZeros(log.time.getSeconds(), 2)
+             }));
+   }
+
    useEffect(() => {
       const io = socketIOClient(APIPrefix);
 
@@ -38,7 +80,12 @@ const Admin = () => {
 
    return (
       <div>
-         <h1>Mentor Logs</h1>
+         <h2 style={{ fontSize: 30 }}>User Progress</h2>
+         <Table 
+            style={{ background: '#000' }} 
+            rows={getUserProgress()} 
+         />
+         <h2 style={{ fontSize: 30, marginTop: 100 }}>Raw Submission Logs</h2>
          <div>
             <h2 style={{ marginBottom: -10 }}>Filter By</h2>
             <label style={{ fontSize: 20, whiteSpace: 'nowrap' }}>
@@ -78,16 +125,12 @@ const Admin = () => {
             title='Recent Submissions' 
             rows={
                logs
-               .filter((row) => (nameFilter.length === 0 || row.name.toLowerCase() === nameFilter.toLowerCase())
-                                 && (questionFilter.length === 0 || row.id.toString() === questionFilter)
-                                 && (!onlyShowIncorrect || !row.correct))
+               .filter((row) => filterLogs(row))
                .sort((a, b) => b.logId - a.logId)
                .map(mapLogs)
             } 
          />
-         {logs.filter((row) => !((nameFilter.length === 0 || row.name.toLowerCase() === nameFilter.toLowerCase())
-                                && (questionFilter.length === 0 || row.id.toString() === questionFilter)
-                                && (!onlyShowIncorrect || !row.correct))).length}
+         {logs.filter((row) => !filterLogs(row)).length}
          &nbsp;row(s) not shown due to filters
       </div>
    )
