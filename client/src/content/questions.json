@@ -90,7 +90,7 @@
       "db_type": "neo4j"
    },
    {
-      "question": "Oh no, Didi and Ansh? Thank goodness we're not on the SS Bluebird with Ansh, but I haven't seen Didi around the SS Tweety anywhere — can you select all the <span class='code'>Person</span>s who <span class='code'>KNOWS</span> another <span class='code'>Person</span> who <span class='code'>PILOTS</span> a <span class='code'>Ship</span>? Hopefully they'll know where Didi went. Hint: <span class='hint>Make sure you have the proper arrow directions (->), and don't forget your <span class='code'>RETURN</span>!</span>",
+      "question": "Oh no, Didi and Ansh? Thank goodness we're not on the SS Bluebird with Ansh, but I haven't seen Didi around the SS Tweety anywhere — can you select all the <span class='code'>Person</span>s who <span class='code'>KNOWS</span> another <span class='code'>Person</span> who <span class='code'>PILOTS</span> a <span class='code'>Ship</span>? Hopefully they'll know where Didi went. Hint: <span class='hint'>Make sure you have the proper arrow directions (->), and don't forget your <span class='code'>RETURN</span>!</span>",
       "template": "MATCH ___ p, s;",
       "id": 15,
       "db_type": "neo4j"
